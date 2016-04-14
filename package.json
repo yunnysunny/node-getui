@@ -3,6 +3,10 @@
   "version": "0.0.1",
   "description": "Node wrapper for getui OS SDK API",
   "main": "index.js",
+  "repository": {
+      "type": "git",
+      "url": "https://github.com/yunnysunny/node-getui.git"
+  },
   "keywords": [
     "getui",
     "sdk",

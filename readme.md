@@ -15,7 +15,7 @@ $ npm install getui
 ## Init
 
 ```js
-var GeTui = require( 'getui' );
+var GeTui = require( 'getui-sdk' );
 var api = new GeTui('HOST', 'APPKEY', 'MASTERSECRET');
 ```
 

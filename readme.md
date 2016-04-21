@@ -9,13 +9,13 @@ The server SDK is a wrapper of all the http/https API calls, which could be foun
 ## Install
 
 ```bash
-$ npm install getui
+$ npm install node-getui
 ```
 
 ## Init
 
 ```js
-var GeTui = require( 'getui-sdk' );
+var GeTui = require( 'node-getui' );
 var api = new GeTui('HOST', 'APPKEY', 'MASTERSECRET');
 ```
 

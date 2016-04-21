@@ -1,5 +1,5 @@
 {
-  "name": "getui-sdk",
+  "name": "node-getui",
   "version": "0.0.1",
   "description": "Node wrapper for getui OS SDK API",
   "main": "index.js",

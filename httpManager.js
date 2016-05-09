@@ -28,18 +28,32 @@ var httpManager = {
 					'Accept': '*/*'
 				}
 			};
+            postData = postData || {};
+            var action = postData['action'];
+            if (action != null && action.length > 0) {
+                options.headers['Gt-Action'] = action;
+            }
 			if (needGzip) {
 				options.gzip = true;
 				options.headers['Content-Encoding'] = 'gzip';
-				postData = zlib.gzipSync(JSON.stringify(postData));
-			} else {
-				options.json = true;
+				return zlib.gzip(JSON.stringify(postData),function(err,buf) {
+                    if (err) {
+						console.error('gzip error:', err);
+                        if(--times){
+							return attempt(host, times);
+						}
+						return callback && callback(err,null);
+                    }
+                    options.body = buf;
+                    doRequest(options,times);
+                });
 			}
+
+			options.json = true;
 			options.body = postData;
-			var action = postData['action'];
-			if (action != null && action.length > 0) {
-				options.headers['Gt-Action'] = action;
-			}
+            doRequest(options);
+        }
+        function doRequest(options,times) {
             request(
                 options,
                 function (err, res, data) {
@@ -52,6 +66,7 @@ var httpManager = {
                         callback && callback(null, data);
                         //console.log("callback over");
                     } else if (--times) {
+                        console.error(err,res ? res.statusCode : 'unknown');
                         attempt(host, times);
                     } else {
                         callback && callback(err, null);

@@ -4,6 +4,17 @@ var request = require('request');
 var util = require('util');
 var GtConfig = require('./GtConfig');
 
+var https = require('https');
+var http = require('http');
+var httpsAgent = new https.Agent({
+  keepAlive: true,
+  maxSockets: 256
+});
+var httpAgent = new http.Agent({
+  keepAlive: true,
+  maxSockets: 256
+});
+
 var httpManager = {
     /**
      *  HTTP POST请求，返回JSON数据格式
@@ -26,7 +37,8 @@ var httpManager = {
                     'Content-Type': 'text/html;charset=UTF-8',
                     'User-Agent': 'Getui nodejs',
                     'Accept': '*/*'
-                }
+                },
+                agent: ho.substr(0,5) === 'https' ? httpsAgent : httpAgent
             };
             postData = postData || {};
             var action = postData['action'];

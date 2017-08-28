@@ -1,11 +1,11 @@
 {
-  "name": "node-getui",
+  "name": "node-getui-killa",
   "version": "0.2.0",
   "description": "Node wrapper for getui OS SDK API",
   "main": "index.js",
   "repository": {
       "type": "git",
-      "url": "https://github.com/yunnysunny/node-getui.git"
+      "url": "https://github.com/killa123/node-getui.git"
   },
   "keywords": [
     "getui",
@@ -14,7 +14,7 @@
     "os",
     "android"
   ],
-  "author": "getui.com",
+  "author": "killa",
   "engines": [
     "node >= 0.10.0"
   ],
